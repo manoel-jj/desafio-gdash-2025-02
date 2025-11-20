@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: gdash-rabbitmq
+    ports:
+      - "5672:5672"     # Porta para comunicação com Python/Go
+      - "15672:15672"   # Interface web
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    networks:
+      - gdash-net
+
+networks:
+  gdash-net:
+    driver: bridge
